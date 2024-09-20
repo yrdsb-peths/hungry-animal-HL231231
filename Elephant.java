@@ -5,7 +5,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * This is a elephant that will act as the main character
  * 
  * @author Henry
- * @version Sep 18, 2024
+ * @version Sep 20, 2024
  */
 public class Elephant extends Actor
 {
@@ -67,12 +67,12 @@ public class Elephant extends Actor
         // Add your action code here.
         if(Greenfoot.isKeyDown("left"))
         {
-            move(-2);
+            move(-5);
             facing = "left";
         }
         else if(Greenfoot.isKeyDown("right"))
         {
-            move(2);
+            move(5);
             facing = "right";
         }
         //removes apple when touches elepahant

@@ -5,11 +5,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Food for the elephant
  * 
  * @author Henry Lee
- * @version Sep 18, 2024
+ * @version Sep 20, 2024
  */
 public class MyWorld extends World
 {
     public int score = 0;
+    int level = 1;
     Label scoreLabel;
     /**
      * Constructor for objects of class MyWorld.
@@ -35,8 +36,10 @@ public class MyWorld extends World
     public void createApple()
     {
         Apple apple = new Apple();
+        apple.setSpeed(level);
         int x = Greenfoot.getRandomNumber(600);
-        addObject(apple, x, 0);
+        int y = 0;
+        addObject(apple, x, y);
     }
     
     /**
@@ -55,5 +58,9 @@ public class MyWorld extends World
     {
         score++;
         scoreLabel.setValue(score);
+        if(score % 5 == 0)
+        {
+            level++;
+        }
     }
 }
