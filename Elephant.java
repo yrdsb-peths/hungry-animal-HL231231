@@ -4,8 +4,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Write a description of class Elephant here.
  * This is a elephant that will act as the main character
  * 
- * @author Henry
- * @version Sep 20, 2024
+ * @author Henry Lee
+ * @version September 24, 2024
  */
 public class Elephant extends Actor
 {
@@ -75,24 +75,37 @@ public class Elephant extends Actor
             move(5);
             facing = "right";
         }
-        //removes apple when touches elepahant
-        eat();
+        //removes food when touches elepahant
+        checkFoodCollision();
         //Animates elephant
         animateElephant();
     }
     
-    /**
-     * Eats apple and creates a new one. Also increases score when eats apple.
-     */
-    public void eat()
+    public void checkFoodCollision()
     {
-        if(isTouching(Apple.class))
+        Actor actor =getOneIntersectingObject(Food.class);
+        if(actor != null)
         {
-            removeTouching(Apple.class);
+            Food food = (Food) actor;
             MyWorld world = (MyWorld) getWorld();
-            world.createApple();
-            world.increaseScore();
-            elephantSound.play();
+            world.increaseScore(food.value);
+            getWorld().removeObject(food);
+            world.spawnFood();
         }
     }
+    
+    /**
+     * Eats apple and creates a new one. Also increases score when eats apple. (OLD EAT CODE)
+     */
+    //public void eat()
+    //{
+    //    if(isTouching(Apple.class))
+    //    {
+    //        removeTouching(Apple.class);
+    //        MyWorld world = (MyWorld) getWorld();
+    //        world.createApple();
+    //        world.increaseScore();
+    //        elephantSound.play();
+    //    }
+    //}
 }

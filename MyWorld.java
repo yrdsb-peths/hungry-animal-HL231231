@@ -5,7 +5,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * Food for the elephant
  * 
  * @author Henry Lee
- * @version Sep 20, 2024
+ * @version September 24, 2024
  */
 public class MyWorld extends World
 {
@@ -26,20 +26,27 @@ public class MyWorld extends World
         //Create Label
         scoreLabel = new Label(0, 80);
         addObject(scoreLabel, 50, 50);
-        //Creates apple
-        createApple();
+        //Create food
+        spawnFood();
     }
     
     /**
-     * Creates a new apple at a random position at the top of the screen
+     * spawns an apple of cherry
      */
-    public void createApple()
+    public void spawnFood()
     {
-        Apple apple = new Apple();
-        apple.setSpeed(level);
+        int rand = Greenfoot.getRandomNumber(10);
+        Food food;
+        if(rand < 9)
+        {
+            food = new Apple();
+        }
+        else
+        {
+            food = new Cherry();
+        }
         int x = Greenfoot.getRandomNumber(600);
-        int y = 0;
-        addObject(apple, x, y);
+        addObject(food, x, 0);
     }
     
     /**
@@ -54,13 +61,12 @@ public class MyWorld extends World
     /**
      * increase score
      */
-    public void increaseScore()
+    public void increaseScore(int value)
     {
-        score++;
+        score+= value;
         scoreLabel.setValue(score);
-        if(score % 5 == 0)
-        {
-            level++;
-        }
+        level = score/5 + 1;
+        Food foodPlaceholder = new Apple();
+        foodPlaceholder.setSpeed(level);
     }
 }
